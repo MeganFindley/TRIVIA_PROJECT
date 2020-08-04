@@ -8,8 +8,7 @@ const Questionaire = ({
     incorrect_answers},
 }) => {
 
-    const ShuffledAnswer = [correct_answer, ...
-    incorrect_answers].sort(
+    const ShuffledAnswer = [correct_answer, ...incorrect_answers].sort(
         () => Math.random() - 0.5
     );
 
@@ -20,7 +19,7 @@ const Questionaire = ({
                                 
                             </h2>
                         </div>
-                        <div classname='answer'>
+                        <div className='answer'>
                             {ShuffledAnswer.map(answer => (    
                                 <button
                                     className='btn' 

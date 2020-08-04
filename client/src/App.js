@@ -19,14 +19,12 @@ function App() {
       <BrowserRouter>
       <Nav />
       <Switch>
-        <div className='wrapper'>
           <Route exact path='/' component={Home} />
           <Route exact path='/login' component={Login} />
           <Route exact path="/questions" component={Question} />
           <Route exact path='/quiz' component={Quiz} />
           <Route exact path='/register' component={Register} />
           <Route exact path='/logout' component={Logout} />
-        </div>
         </Switch>
       </BrowserRouter>
     </React.Fragment>

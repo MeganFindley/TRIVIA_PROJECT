@@ -32,7 +32,9 @@ function Question() {
         difficulty: 'easy'
     });
 
-    const [apiData, setApiData] = useState([])
+    // const [questions, setQuestions] = useState([]);
+
+    const [apiLink, setApiLink] = useState('https://opentdb.com/api.php?amount=5&category=9&difficulty=medium&type=multiple')
 
     const setData = (e) => {
         setQuizDetails({
@@ -43,24 +45,24 @@ function Question() {
 
     const submitForm = async (e) => {
         e.preventDefault();
+            setApiLink(`https://opentdb.com/api.php?amount=${quizDetails.amount}&category=${quizDetails.category}&difficulty=${quizDetails.difficulty}&type=multiple`)
 
-        const API_URL = `https://opentdb.com/api.php?amount=${quizDetails.amount}&category=${quizDetails.category}&difficulty=${quizDetails.difficulty}&type=multiple`
-
-
-        fetch(API_URL)
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data.results);
-                setApiData(data.results);
-            });
+        // const API_URL = `https://opentdb.com/api.php?amount=${quizDetails.amount}&category=${quizDetails.category}&difficulty=${quizDetails.difficulty}&type=multiple`
 
 
-        console.log(apiData)
+        // fetch(API_URL)
+        //     .then((res) => res.json())
+        //     .then((data) => {
+        //         console.log(data.results);
+        //         setQuestions(...questions, data.results);
+        //     });
+
+
+        
 
         setRedirect({
             redirect: true
         })
-        console.log(apiData)
     }
 
     // -----Log in check-----------------------
@@ -71,10 +73,11 @@ function Question() {
     else if (redirect.redirect) {
         return (
             <div>
-                <Quiz quizData={apiData.api} />
+                <Quiz url={apiLink} />
             </div>
         )
     }
+
     //------------------------------------------
     return (
         <div>

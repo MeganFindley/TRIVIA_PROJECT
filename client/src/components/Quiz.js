@@ -4,21 +4,24 @@ import axios from 'axios';
 import { Redirect } from "react-router-dom";
 import './quiz.css'
 
-const API_URL = 'https://opentdb.com/api.php?amount=5&category=9&difficulty=medium&type=multiple'
+//const API_URL = 'https://opentdb.com/api.php?amount=5&category=9&difficulty=medium&type=multiple'
 
-function Quiz() {
-    const [questions, setQuestions] = useState([]);
+function Quiz(props) {
+    const [questions] = useState({
+        questions: props.quizData
+    });
+    //console.log(questions);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [score, setScore] = useState(0);
     const [showAnswers, setShowAnswers] = useState(false);
 
-    useEffect(() => {
-        fetch(API_URL)
-            .then((res) => res.json())
-            .then((data) => {
-                setQuestions(data.results);
-            });
-    }, []);
+    // useEffect(() => {
+    //     fetch(API_URL)
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             setQuestions(data.results);
+    //         });
+    // }, []);
 
     const handleAnswer = (answer) => {
         const newIndex = currentIndex + 1

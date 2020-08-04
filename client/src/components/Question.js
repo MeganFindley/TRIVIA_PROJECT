@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
+import Quiz from "./Quiz"
 
 function Question() {
-    
+
     // ---- logged in info --------------------
     const [loggedin, setLoggedin] = useState({
         login: false,
@@ -21,16 +22,17 @@ function Question() {
     }
     //--------------------------------------------
 
-    const [redirect, setRedirect] =useState({
+    const [redirect, setRedirect] = useState({
         redirect: false
     });
-    console.log(redirect);
 
     const [quizDetails, setQuizDetails] = useState({
         amount: '10',
         category: '9',
         difficulty: 'easy'
     });
+
+    const [apiData, setApiData] = useState([])
 
     const setData = (e) => {
         setQuizDetails({
@@ -42,24 +44,23 @@ function Question() {
     const submitForm = async (e) => {
         e.preventDefault();
 
-        const body = JSON.stringify({
-            amount: quizDetails.amount,
-            category: quizDetails.category,
-            difficulty: quizDetails.difficulty
-        });
+        const API_URL = `https://opentdb.com/api.php?amount=${quizDetails.amount}&category=${quizDetails.category}&difficulty=${quizDetails.difficulty}&type=multiple`
 
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
 
-        const res = await axios.post("/questions", body, config);
-        console.log(res.data);
+        fetch(API_URL)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data.results);
+                setApiData(data.results);
+            });
+
+
+        console.log(apiData)
 
         setRedirect({
             redirect: true
         })
+        console.log(apiData)
     }
 
     // -----Log in check-----------------------
@@ -67,15 +68,12 @@ function Question() {
         console.log('inside of redirect')
         return <Redirect to='/login' />
     }
-    else if(redirect.redirect){
-        return <Redirect to={{
-            pathname:'/questions',
-            state: {
-                amount: quizDetails.amount, 
-                category: quizDetails.category,
-                difficulty: quizDetails.difficulty
-             }
-        }}/>
+    else if (redirect.redirect) {
+        return (
+            <div>
+                <Quiz quizData={apiData.api} />
+            </div>
+        )
     }
     //------------------------------------------
     return (
@@ -84,7 +82,7 @@ function Question() {
             <h2>Only Visable to logged in users</h2>
             <form className="quizForm">
                 <label>No. of Questions: </label>
-                <input type='number' name='amount'defaultValue='10' min='5' max='50' onChange={setData}/>
+                <input type='number' name='amount' defaultValue='10' min='5' max='50' onChange={setData} />
                 <label>Categories: </label>
                 <select name='category' onChange={setData}>
                     <option defaultValue="9" >General Knowledge</option>

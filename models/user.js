@@ -17,6 +17,12 @@ const userSchema = new mongoose.Schema({
     },
     score: {
         type: Number
+    },
+    minutes: {
+        type: Number
+    },
+    seconds: {
+        type: Number
     }
 });
 

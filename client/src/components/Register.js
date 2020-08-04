@@ -9,6 +9,9 @@ function Register() {
         confirmPass: ''
     });
 
+    const [message, setMessage] =useState({
+        message:'' 
+    })
     const setData = (e) => {
         setUserDetails({
             ...userDetails,
@@ -33,11 +36,15 @@ function Register() {
         };
 
         const res = await axios.post("/register", body, config);
+        setMessage({
+            message: res.data
+        });
         console.log(res.data);
     }
     return (
         <div>
             <h1>Registration Form</h1>
+            <h2>{message.message}</h2>
             <form className="regForm">
                 <input type='text' name='userName' onChange={setData} placeholder="USERNAME" />
                 <input type='email' name='userEmail' onChange={setData} placeholder="EMAIL" />

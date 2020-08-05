@@ -20,7 +20,7 @@ function Home() {
         const res = await axios.get('/api');
         console.log(res.data.top10);
         console.log(res.data.top10[0].username);
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < res.data.top10.length; i++) {
             usersArray.push(res.data.top10[i].username);
             scoresArray.push(res.data.top10[i].score);
             timeArray.push(`${res.data.top10[i].minutes}:${res.data.top10[i].seconds}`)
@@ -47,17 +47,17 @@ function Home() {
                 <ul className='scores'>
                     <li className='tableTitle'>Score:</li>
                     <br/>
-                    {top10.topScores.map((name) => (
-                        <li>{name}</li>
+                    {top10.topScores.map((score) => (
+                        <li>{score}</li>
                     ))}
                 </ul>
-                <ul className='times'>
+                {/* <ul className='times'>
                     <li className='tableTitle'>Time:</li>
                     <br/>
-                    {top10.topTimes.map((name) => (
-                        <li>{name}</li>
+                    {top10.topTimes.map((time) => (
+                        <li>{time}</li>
                     ))}
-                </ul>
+                </ul> */}
             </div>
         </div>
     )

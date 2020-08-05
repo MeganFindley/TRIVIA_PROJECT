@@ -7,6 +7,24 @@ import './quiz.css'
 const API_URL = 'https://opentdb.com/api.php?amount=5&category=9&difficulty=medium&type=multiple'
 
 function Quiz(props) {
+    // ---- logged in info --------------------
+    const [loggedin, setLoggedin] = useState({
+        login: false,
+        loading: true,
+        username: ''
+    });
+    useEffect(() => {
+        getApi();
+    }, []);
+    const getApi = async () => {
+        const res = await axios.get('/hidden');
+        setLoggedin({
+            login: res.data.loggin,
+            username: res.data.user.username,
+            loading: false
+        });
+    }
+    //--------------------------------------------
     const [questions, setQuestions] = useState([]);
     //console.log(questions);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -21,7 +39,7 @@ function Quiz(props) {
             });
     }, []);
 
-    const handleAnswer = (answer) => {
+    const handleAnswer = async (answer) => {
         const newIndex = currentIndex + 1
         setCurrentIndex(newIndex);
 
@@ -30,26 +48,26 @@ function Quiz(props) {
         }
 
         setShowAnswers(true);
-
-        // const newIndex = currentIndex +1
-        // setCurrentIndex(newIndex);
     };
-     // ---- logged in info --------------------
-     const [loggedin, setLoggedin] = useState({
-        login: false,
-        loading: true
-    });
-    useEffect(() => {
-        getApi();
-    }, []);
-    const getApi = async () => {
-        const res = await axios.get('/hidden');
-        setLoggedin({
-            login: res.data.loggin,
-            loading: false
+
+    const scoreToDB = async (e) => {
+        e.preventDefault();
+
+        console.log('running quiz end')
+
+        const body = JSON.stringify({
+            user: loggedin.username,
+            score: score
         });
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        const res = await axios.post("/quiz", body, config);
+        console.log(res.data);
     }
-    //--------------------------------------------
+
     if (!loggedin.login && !loggedin.loading) {
         console.log('inside of redirect')
         return <Redirect to='/login' />
@@ -58,9 +76,12 @@ function Quiz(props) {
     return questions.length > 0 ? (
         <div className="container">
             {currentIndex >= questions.length ? (
-                <h1 className="">
-                    Game ended! Your score is: {score}.
+                <div>
+                    <h1 className="">
+                        Game ended! Your score is: {score}.
                 </h1>
+                    <button onClick={scoreToDB}>Add score to Leader Board</button>
+                </div>
             ) : (
                     <Questionaire className="container"
                         data={questions[currentIndex]}
@@ -70,7 +91,7 @@ function Quiz(props) {
                 )}
         </div>
     ) : (
-            <h2 class="container">Just loading...!</h2>
+            <h2 className="container">Just loading...!</h2>
         );
 
 }

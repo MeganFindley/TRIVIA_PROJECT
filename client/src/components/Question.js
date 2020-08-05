@@ -8,15 +8,18 @@ function Question() {
     // ---- logged in info --------------------
     const [loggedin, setLoggedin] = useState({
         login: false,
-        loading: true
+        loading: true,
+        username: ''
     });
     useEffect(() => {
         getApi();
     }, []);
     const getApi = async () => {
         const res = await axios.get('/hidden');
+        console.log(res.data.user.username);
         setLoggedin({
             login: res.data.loggin,
+            username: res.data.user.username,
             loading: false
         });
     }
@@ -45,7 +48,7 @@ function Question() {
 
     const submitForm = async (e) => {
         e.preventDefault();
-            setApiLink(`https://opentdb.com/api.php?amount=${quizDetails.amount}&category=${quizDetails.category}&difficulty=${quizDetails.difficulty}&type=multiple`)
+        setApiLink(`https://opentdb.com/api.php?amount=${quizDetails.amount}&category=${quizDetails.category}&difficulty=${quizDetails.difficulty}&type=multiple`)
 
         // const API_URL = `https://opentdb.com/api.php?amount=${quizDetails.amount}&category=${quizDetails.category}&difficulty=${quizDetails.difficulty}&type=multiple`
 
@@ -58,7 +61,7 @@ function Question() {
         //     });
 
 
-        
+
 
         setRedirect({
             redirect: true
@@ -79,10 +82,11 @@ function Question() {
     }
 
     //------------------------------------------
+    console.log(loggedin);
     return (
         <div>
             <h1>Trivia Quiz Set Up</h1>
-            <h2>Only Visable to logged in users</h2>
+            <h2>Only Visable to logged in user: {loggedin.username}</h2>
             <form className="quizForm">
                 <label>No. of Questions: </label>
                 <input type='number' name='amount' defaultValue='10' min='5' max='50' onChange={setData} />

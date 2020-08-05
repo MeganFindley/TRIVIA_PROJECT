@@ -34,30 +34,34 @@ function Home() {
     }
     console.log(top10.topScores);
     return (
-        <div>
-            <h1>Home Page</h1>
-            <div className='leaderBoard'>
-                <ul className='users'>
-                    <li className='tableTitle'>Username:</li>
-                    <br/>
-                    {top10.topUsers.map((name) => (
-                        <li>{name}</li>
-                    ))}
-                </ul>
-                <ul className='scores'>
-                    <li className='tableTitle'>Score:</li>
-                    <br/>
-                    {top10.topScores.map((score) => (
-                        <li>{score}</li>
-                    ))}
-                </ul>
-                {/* <ul className='times'>
-                    <li className='tableTitle'>Time:</li>
-                    <br/>
-                    {top10.topTimes.map((time) => (
-                        <li>{time}</li>
-                    ))}
-                </ul> */}
+        <div className='homeComp'>
+            <div className='homeWrap'>
+                <div className='homeContent'>
+                    <h1 className='title'>Top 10 Scores:</h1>
+                    <div className='leaderBoard'>
+                        <ul className='users'>
+                            <li className='tableTitle'>Username:</li>
+                            <br />
+                            {top10.topUsers.map((name, score) => (
+                                <li>{name}</li>
+                            ))}
+                        </ul>
+                        <ul className='scores'>
+                            <li className='tableTitle'>Score:</li>
+                            <br />
+                            {top10.topScores.map((score) => (
+                                <li>{score}</li>
+                            ))}
+                        </ul>
+                        {/* <ul className='times'>
+                            <li className='tableTitle'>Time:</li>
+                            <br />
+                            {top10.topTimes.map((time) => (
+                                <li>{time}</li>
+                            ))}
+                        </ul> */}
+                    </div>
+                </div>
             </div>
         </div>
     )

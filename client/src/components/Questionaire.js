@@ -15,7 +15,7 @@ const Questionaire = ({
     return (  
         <div className="container">
             <div >
-                            <h2 dangerouslySetInnerHTML={{__html: question}}>
+                            <h2 dangerouslySetInnerHTML={{__html: question}} className = 'quizH2'>
                                 
                             </h2>
                         </div>

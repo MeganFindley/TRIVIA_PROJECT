@@ -112,7 +112,6 @@ app.get("/hidden", async (req, res) => {
             loggin: true,
             user: theUser
         });
-        res.send(theUser);
     } else {
         res.json({ loggin: false });
     }
@@ -129,7 +128,7 @@ app.post("/quiz", async (req, res) => {
 
     console.log(user);
 
-    
+
     await User.findOneAndUpdate({ username: quizUser }, {
         score: quizScore
     });

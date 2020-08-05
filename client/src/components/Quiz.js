@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Questionaire } from './Main';
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
-import './quiz.css'
+import './CSS/quiz.css'
 
 const API_URL = 'https://opentdb.com/api.php?amount=5&category=9&difficulty=medium&type=multiple'
 
@@ -30,6 +30,7 @@ function Quiz(props) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [score, setScore] = useState(0);
     const [showAnswers, setShowAnswers] = useState(false);
+    const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
         fetch(props.url)
@@ -65,22 +66,28 @@ function Quiz(props) {
             }
         };
         const res = await axios.post("/quiz", body, config);
+
         console.log(res.data);
+        setRedirect(true);
+
     }
 
     if (!loggedin.login && !loggedin.loading) {
         console.log('inside of redirect')
         return <Redirect to='/login' />
     }
+    if (redirect) {
+        return <Redirect to='/' />
+    }
     //--------------------------------------------
-    return questions.length > 0 ? (
+    return questions.length > 0 ? (<div className='quizComp'>
         <div className="container">
             {currentIndex >= questions.length ? (
                 <div>
                     <h1 className="">
                         Game ended! Your score is: {score}.
                 </h1>
-                    <button className='button1'  onClick={scoreToDB}>Add score to Leader Board</button>
+                    <button className='button1' onClick={scoreToDB}>Add score to Leader Board</button>
                 </div>
             ) : (
                     <Questionaire className="container"
@@ -90,8 +97,10 @@ function Quiz(props) {
                     />
                 )}
         </div>
-    ) : (
+        </div>
+    ) : (   <div className='quizComp'>
             <h2 className="container">Just loading...!</h2>
+            </div>
         );
 
 }

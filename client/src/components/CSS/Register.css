@@ -1,0 +1,60 @@
+.registerComp{
+    height: 100vh;
+    background-color: #282c34;
+}
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.title, .message, .formWrap{
+    flex: 100%;
+    padding: 30px;
+}
+.message{
+    color: white;
+    text-align: center;
+}
+.formWrap{
+    padding-left: 0;
+    padding-right: 0;
+}
+.regForm{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#regBtn{
+        display:inline-block;
+        padding:0.35em 1.2em;
+        border:0.1em solid #FFFFFF;
+        margin:0 0.3em 0.3em 0;
+        border-radius:0.12em;
+        box-sizing: border-box;
+        text-decoration:none;
+        font-family:'Roboto',sans-serif;
+        font-weight:300;
+        color:#000000;
+        text-align:center;
+        transition: all 0.2s;
+        margin-top: 10px;
+    }
+    
+    #regBtn:hover{
+        color:#000000;
+        background-color: coral;
+    }
+    #regBtn:focus{
+        outline: none;
+    }
+.regForm input:hover{
+    color:#000000;
+    background-color: coral;
+}
+.regForm input:focus{
+    outline: none;
+}

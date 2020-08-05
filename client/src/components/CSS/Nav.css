@@ -1,0 +1,31 @@
+.navComp{
+    background-color: coral;
+    height: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    margin: 0;
+    border-bottom: solid 2px #282c34; ;
+}
+span{
+    font-family:'Roboto',sans-serif;
+    color: #282c34;
+}
+/* .logInd{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding-right: 40px;
+    align-content: center;
+} */
+li{
+    padding-right: 10px;
+}
+.navList{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    height: 80px;
+    align-content: center;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './CSS/Register.css'
 
 function Register() {
     const [userDetails, setUserDetails] = useState({
@@ -9,8 +10,8 @@ function Register() {
         confirmPass: ''
     });
 
-    const [message, setMessage] =useState({
-        message:'' 
+    const [message, setMessage] = useState({
+        message: ''
     })
     const setData = (e) => {
         setUserDetails({
@@ -42,16 +43,20 @@ function Register() {
         console.log(res.data);
     }
     return (
-        <div>
-            <h1>Registration Form</h1>
-            <h2>{message.message}</h2>
-            <form className="regForm">
-                <input type='text' name='userName' onChange={setData} placeholder="USERNAME" />
-                <input type='email' name='userEmail' onChange={setData} placeholder="EMAIL" />
-                <input type='password' name='userPassword' onChange={setData} placeholder="PASSWORD" />
-                <input type='password' name='confirmPass' onChange={setData} placeholder="CONFIRM PASSWORD" />
-                <button type='submit' onClick={submitForm}>Register</button>
-            </form>
+        <div className='registerComp'>
+            <div className='flex'>
+                <h1 className='title'>Registration Form</h1>
+                <div className='formWrap'>
+                    <form className="regForm">
+                        <input type='text' name='userName' onChange={setData} placeholder="Username" />
+                        <input type='email' name='userEmail' onChange={setData} placeholder="Email" />
+                        <input type='password' name='userPassword' onChange={setData} placeholder="Password" />
+                        <input type='password' name='confirmPass' onChange={setData} placeholder="Confirm Password" />
+                        <button id='regBtn'type='submit' onClick={submitForm}>Register</button>
+                    </form>
+                </div>
+                <h2 className='message'>{message.message}</h2>
+            </div>
         </div>
     )
 }

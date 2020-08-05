@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './CSS/Logout.css'
 
 function Logout() {
     const [message, setMessage] =useState({
@@ -24,12 +25,12 @@ function Logout() {
         
     }
     return (
-        <div>
-            <h1>Logout Page</h1>
-            <h2>{message.message}</h2>
-            <form>
+        <div className='logoutComp'>
+            <h1 className='title'>Logout Page</h1>
+            <form className='loginForm'>
                 <button type='submit' onClick={submitForm} >Logout</button>
             </form>
+            <h2 className='message'>{message.message}</h2>
         </div>
     );
 }

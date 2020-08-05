@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
 import Quiz from "./Quiz"
+import './CSS/Question.css'
 
 function Question() {
 
@@ -84,13 +85,22 @@ function Question() {
     //------------------------------------------
     console.log(loggedin);
     return (
-        <div>
-            <h1>Trivia Quiz Set Up</h1>
-            <h2>Only Visable to logged in user: {loggedin.username}</h2>
+        <div className='quizComp'>
+            <div className='flex'>
+            <h1 className='title'>Trivia Quiz Set Up</h1>
+            <h2 className='quizMessage'>Only Visable to logged in user: {loggedin.username}</h2>
+            <div className='formWrap'>
             <form className="quizForm">
-                <label>No. of Questions: </label>
-                <input type='number' name='amount' defaultValue='10' min='5' max='50' onChange={setData} />
-                <label>Categories: </label>
+                <div className='flexStart'>
+                <label >No. of Questions: </label>
+                <br/>
+                <label >Categories: </label>
+                <br/>
+                <label >Difficulty: </label>
+                </div>
+                <div className='flexEnd'>      
+                <input type='number' name='amount' defaultValue='10' min='5' max='50' onChange={setData} />  
+                <br/>    
                 <select name='category' onChange={setData}>
                     <option defaultValue="9" >General Knowledge</option>
                     <option value="10">Books</option>
@@ -117,14 +127,19 @@ function Question() {
                     <option value="31">Anime & Manga</option>
                     <option value="32">Cartoon & Animations</option>
                 </select>
-                <label>Difficulty: </label>
+                <br/>
                 <select name='difficulty' onChange={setData}>
                     <option defaultValue="easy">Easy</option>
                     <option value="medium">Medium</option>
                     <option value="hard">Hard</option>
                 </select>
-                <button type='submit' onClick={submitForm}>Make Quiz</button>
+                </div>
+                <div className='btnWrap'>
+                <button id='quizBtn'type='submit' onClick={submitForm}>Make Quiz</button>
+                </div>
             </form>
+            </div>
+            </div>
         </div>
     )
 }

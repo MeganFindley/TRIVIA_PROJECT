@@ -19,10 +19,10 @@ const Questionaire = ({
                                 
                             </h2>
                         </div>
-                        <div className='answer'>
+                        <div className='results'>
                             {ShuffledAnswer.map(answer => (    
                                 <button
-                                    className='btn' 
+                                    className='button1' 
                                     onClick={() => handleAnswer
                                     (answer)}>
                                     {answer}

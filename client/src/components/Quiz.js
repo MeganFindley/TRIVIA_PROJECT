@@ -80,7 +80,7 @@ function Quiz(props) {
                     <h1 className="">
                         Game ended! Your score is: {score}.
                 </h1>
-                    <button onClick={scoreToDB}>Add score to Leader Board</button>
+                    <button className='button1'  onClick={scoreToDB}>Add score to Leader Board</button>
                 </div>
             ) : (
                     <Questionaire className="container"

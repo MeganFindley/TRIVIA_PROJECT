@@ -19,9 +19,6 @@
     display: flex;
     flex-wrap: wrap;
 }
-.quizForm label{
-    color: white;
-}
 .flexStart, .flexEnd{
     flex: 50%;
 }
@@ -38,6 +35,9 @@
     flex-wrap: wrap;
     justify-content: flex-end;
 }
+.quizLabel{
+    color: white;
+}
 #quizBtn{
     display:inline-block;
     padding:0.35em 1.2em;
@@ -51,20 +51,22 @@
     color:#000000;
     text-align:center;
     transition: all 0.2s;
-    margin-top: 10px;
+    margin-top: 10px; 
 }
-
-#quiznBtn:hover{
+#quizBtn:hover, #quizBtn:focus{
     color:#000000;
-    background-color: coral;
-}
-#quizBtn:focus{
+    background-color: #FFAA5A;
     outline: none;
 }
-.flexEnd input:hover, .flexEnd select:hover{
-    color:#000000;
-    background-color: coral;
+#amou:hover, #amou:focus{
+    background-color: #FFF05A;
+    outline: none;
 }
-.flexEnd input:focus, .flexEnd select:focus{
+#cate:hover, #cate:focus{
+    background-color: #FFD25A;
+    outline: none;
+}
+#diff:hover, #diff:focus{
+    background-color: #FFAA5A;
     outline: none;
 }

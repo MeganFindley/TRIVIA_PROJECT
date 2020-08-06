@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Questionaire } from './Main';
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
-import './CSS/quiz.css'
+import './CSS/quiz.css';
+import moment from 'moment';
 
 const API_URL = 'https://opentdb.com/api.php?amount=5&category=9&difficulty=medium&type=multiple'
 
@@ -53,7 +54,6 @@ function Quiz(props) {
 
     const scoreToDB = async (e) => {
         e.preventDefault();
-
         console.log('running quiz end')
 
         const body = JSON.stringify({
@@ -71,6 +71,8 @@ function Quiz(props) {
         setRedirect(true);
 
     }
+
+
 
     if (!loggedin.login && !loggedin.loading) {
         console.log('inside of redirect')
@@ -90,17 +92,19 @@ function Quiz(props) {
                     <button className='button1' onClick={scoreToDB}>Add score to Leader Board</button>
                 </div>
             ) : (
-                    <Questionaire className="container"
-                        data={questions[currentIndex]}
-                        showAnswers={showAnswers}
-                        handleAnswer={handleAnswer}
-                    />
+                    <div>
+                        <Questionaire className="container"
+                            data={questions[currentIndex]}
+                            showAnswers={showAnswers}
+                            handleAnswer={handleAnswer}
+                        />
+                    </div>
                 )}
         </div>
-        </div>
-    ) : (   <div className='quizComp'>
-            <h2 className="container">Just loading...!</h2>
-            </div>
+    </div>
+    ) : (<div className='quizComp'>
+        <h2 className="container">Just loading...!</h2>
+    </div>
         );
 
 }

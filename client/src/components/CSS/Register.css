@@ -6,6 +6,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    transform: translate(0%, 80px);
 }
 .title, .message, .formWrap{
     flex: 100%;
@@ -44,17 +45,29 @@
         margin-top: 10px;
     }
     
-    #regBtn:hover{
+    #regBtn:hover, #regBtn:focus{
         color:#000000;
-        background-color: coral;
-    }
-    #regBtn:focus{
+        background-color: #FFAA5A;
         outline: none;
     }
-.regForm input:hover{
+
+#regNam:hover, #regNam:focus{
+    background-color:#FFF05A ;
     color:#000000;
-    background-color: coral;
+    outline: none;
 }
-.regForm input:focus{
+#regEm:hover, #regEm:focus{
+    background-color:#FFD25A ;
+    color:#000000;
+    outline: none;
+}
+#regP1:hover, #regP1:focus{
+    background-color:#FFAA5A ;
+    color:#000000;
+    outline: none;
+}
+#regP2:hover, #regP2:focus{
+    background-color:#FF785A ;
+    color:#000000;
     outline: none;
 }

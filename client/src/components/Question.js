@@ -88,20 +88,20 @@ function Question() {
         <div className='quizComp'>
             <div className='flex'>
             <h1 className='title'>Trivia Quiz Set Up</h1>
-            <h2 className='quizMessage'>Only Visable to logged in user: {loggedin.username}</h2>
+            <h2 className='quizMessage'>{loggedin.username} please choose your quiz:</h2>
             <div className='formWrap'>
             <form className="quizForm">
                 <div className='flexStart'>
-                <label >No. of Questions: </label>
+                <label className='quizLabel'>No. of Questions: </label>
                 <br/>
-                <label >Categories: </label>
+                <label className='quizLabel'>Categories: </label>
                 <br/>
-                <label >Difficulty: </label>
+                <label className='quizLabel'>Difficulty: </label>
                 </div>
                 <div className='flexEnd'>      
-                <input type='number' name='amount' defaultValue='10' min='5' max='50' onChange={setData} />  
+                <input id='amou' className='quizBtns' type='number' name='amount' defaultValue='10' min='5' max='50' onChange={setData} />  
                 <br/>    
-                <select name='category' onChange={setData}>
+                <select id='cate' className='quizBtns' name='category' onChange={setData}>
                     <option defaultValue="9" >General Knowledge</option>
                     <option value="10">Books</option>
                     <option value="11">Film</option>
@@ -128,14 +128,14 @@ function Question() {
                     <option value="32">Cartoon & Animations</option>
                 </select>
                 <br/>
-                <select name='difficulty' onChange={setData}>
+                <select id='diff' className='quizBtns'name='difficulty' onChange={setData}>
                     <option defaultValue="easy">Easy</option>
                     <option value="medium">Medium</option>
                     <option value="hard">Hard</option>
                 </select>
                 </div>
                 <div className='btnWrap'>
-                <button id='quizBtn'type='submit' onClick={submitForm}>Make Quiz</button>
+                <button id='quizBtn' type='submit' onClick={submitForm}>Make Quiz</button>
                 </div>
             </form>
             </div>

@@ -1,36 +1,16 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import './CSS/Logout.css'
 
-function Logout() {
-    const [message, setMessage] =useState({
-        message:'' 
-    });
-    const submitForm = async (e) => {
-        e.preventDefault();
-
-        const body = {};
-
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-
-        const res = await axios.post("/logout", body, config);
-        setMessage({
-            message: res.data
-        });
-        console.log(res.data);
-        
-    }
+function Logout(props) {
     return (
         <div className='logoutComp'>
+            <div className='logoutPage'>
             <h1 className='title'>Logout Page</h1>
             <form className='loginForm'>
-                <button type='submit' onClick={submitForm} >Logout</button>
+                <button id='logoutBtn'type='submit' onClick={props.submitForm} >Logout</button>
             </form>
-            <h2 className='message'>{message.message}</h2>
+            <h2 className='message'>{props.message}</h2>
+            </div>
         </div>
     );
 }

@@ -3,6 +3,7 @@
     background-color: #282c34;
 }
 .flex{
+    transform: translate(0%, 80px);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -41,19 +42,21 @@
         color:#000000;
         text-align:center;
         transition: all 0.2s;
+        margin-top: 10px;
     }
     
-    #loginBtn:hover{
+    #loginBtn:hover, #loginBtn:focus{
         color:#000000;
-        background-color: coral;
-    }
-    #loginBtn:focus{
+        background-color: #FFAA5A;
         outline: none;
     }
-.loginForm input:hover{
+#loginEmail:hover, #loginEmail:focus{
+    background-color:#FFF05A ;
     color:#000000;
-    background-color: coral;
+    outline: none;
 }
-.loginForm input:focus{
+#loginPass:hover, #loginPass:focus{
+    background-color:#FFD25A ;
+    color:#000000;
     outline: none;
 }

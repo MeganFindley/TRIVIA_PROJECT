@@ -59,9 +59,9 @@ app.post("/register", async (req, res) => {
                     username: userName,
                     email: userEmail,
                     password: hashedPass,
-                    score: Math.floor(Math.random() * 10 + 1),
-                    minutes: Math.floor(Math.random() * 10 + 1),
-                    seconds: Math.floor(Math.random() * 59 + 1)
+                    score: 0,
+                    minutes: 0,
+                    seconds: 0,
                 }
             );
             res.send('User registered');
@@ -86,18 +86,21 @@ app.post("/login", async (req, res) => {
                 httpOnly: true
             };
             res.cookie('jwt', token, cookieOpts);
-            res.send('logged in');
+            //let toFront = ['User logged in', user[0].username];
+            //res.send(toFront);
+            res.json({message: `${user[0].username} is logged in`, user: user[0].username});
         } else {
-            res.send('password wrong try again');
+            toFront = [];
+            res.json({message: 'Password is wrong please try again'});
         }
     } else {
-        res.send('Email not found please register');
+        res.json({message:'Email not found please register'});
     }
 });
 
 // ---------LOGOUT PAGE-------------------------------------------------------------
 app.post("/logout", auth.logOut, (req, res) => {
-    res.send('Logged out');
+    res.send('User logged out');
 });
 
 //----------PAGE HIDDEN--------------------------------------------------------------
@@ -110,7 +113,7 @@ app.get("/hidden", async (req, res) => {
         req.foundUser = theUser;
         res.json({
             loggin: true,
-            user: theUser
+            user: theUser.username
         });
     } else {
         res.json({ loggin: false });

@@ -48,10 +48,10 @@ function Register() {
                 <h1 className='title'>Registration Form</h1>
                 <div className='formWrap'>
                     <form className="regForm">
-                        <input type='text' name='userName' onChange={setData} placeholder="Username" />
-                        <input type='email' name='userEmail' onChange={setData} placeholder="Email" />
-                        <input type='password' name='userPassword' onChange={setData} placeholder="Password" />
-                        <input type='password' name='confirmPass' onChange={setData} placeholder="Confirm Password" />
+                        <input id='regNam'type='text' name='userName' onChange={setData} placeholder="Username" />
+                        <input id='regEm'type='email' name='userEmail' onChange={setData} placeholder="Email" />
+                        <input id='regP1'type='password' name='userPassword' onChange={setData} placeholder="Password" />
+                        <input id='regP2'type='password' name='confirmPass' onChange={setData} placeholder="Confirm Password" />
                         <button id='regBtn'type='submit' onClick={submitForm}>Register</button>
                     </form>
                 </div>

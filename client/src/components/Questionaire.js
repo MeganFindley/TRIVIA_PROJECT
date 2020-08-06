@@ -24,9 +24,7 @@ const Questionaire = ({
                     <button 
                         className='button1'
                         onClick={() => handleAnswer
-                            (answer)}>
-                        {answer}
-                    </button>
+                            (answer)} dangerouslySetInnerHTML={{ __html: answer }} />
                 ))}
             </div>
         </div>

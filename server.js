@@ -107,9 +107,9 @@ app.post("/logout", auth.logOut, (req, res) => {
 app.get("/hidden", async (req, res) => {
     if (req.cookies.jwt) {
         let decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
-        console.log(decoded);
+        //console.log(decoded);
         let theUser = await User.findById(decoded.id);
-        console.log(theUser);
+        //console.log(theUser);
         req.foundUser = theUser;
         res.json({
             loggin: true,
@@ -125,11 +125,11 @@ app.post("/quiz", async (req, res) => {
     const quizUser = req.body.user;
     const quizScore = req.body.score;
 
-    console.log(quizScore, quizUser);
+    console.log('line 128 server.js', quizScore, quizUser);
 
     const user = await User.find({ username: quizUser });
 
-    console.log(user);
+    //console.log(user);
 
 
     await User.findOneAndUpdate({ username: quizUser }, {

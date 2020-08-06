@@ -42,22 +42,22 @@ function Home() {
                         <ul className='users'>
                             <li className='tableTitle'>Username:</li>
                             <br />
-                            {top10.topUsers.map((name, score) => (
-                                <li>{name}</li>
+                            {top10.topUsers.map((name) => (
+                                <li key={name}>{name}</li>
                             ))}
                         </ul>
                         <ul className='scores'>
                             <li className='tableTitle'>Score:</li>
                             <br />
-                            {top10.topScores.map((score) => (
-                                <li>{score}</li>
+                            {top10.topScores.map((score, i) => (
+                                <li key={i}>{score}</li>
                             ))}
                         </ul>
                         {/* <ul className='times'>
                             <li className='tableTitle'>Time:</li>
                             <br />
                             {top10.topTimes.map((time) => (
-                                <li>{time}</li>
+                                <li key={time}>{time}</li>
                             ))}
                         </ul> */}
                     </div>

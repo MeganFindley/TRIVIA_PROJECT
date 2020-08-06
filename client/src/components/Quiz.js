@@ -3,7 +3,6 @@ import { Questionaire } from './Main';
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
 import './CSS/quiz.css';
-import moment from 'moment';
 
 const API_URL = 'https://opentdb.com/api.php?amount=5&category=9&difficulty=medium&type=multiple'
 
@@ -19,9 +18,10 @@ function Quiz(props) {
     }, []);
     const getApi = async () => {
         const res = await axios.get('/hidden');
+        console.log(res);
         setLoggedin({
             login: res.data.loggin,
-            username: res.data.user.username,
+            username: res.data.user,
             loading: false
         });
     }
@@ -56,6 +56,7 @@ function Quiz(props) {
         e.preventDefault();
         console.log('running quiz end')
 
+        console.log(loggedin.username);
         const body = JSON.stringify({
             user: loggedin.username,
             score: score
@@ -82,6 +83,7 @@ function Quiz(props) {
         return <Redirect to='/' />
     }
     //--------------------------------------------
+    console.log(loggedin.username);
     return questions.length > 0 ? (<div className='quizComp'>
         <div className="container">
             {currentIndex >= questions.length ? (

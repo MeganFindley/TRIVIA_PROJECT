@@ -17,10 +17,11 @@ function Question() {
     }, []);
     const getApi = async () => {
         const res = await axios.get('/hidden');
-        console.log(res.data.user.username);
+        console.dir(res);
+        console.log(res.data.user);
         setLoggedin({
             login: res.data.loggin,
-            username: res.data.user.username,
+            username: res.data.user,
             loading: false
         });
     }
@@ -50,19 +51,6 @@ function Question() {
     const submitForm = async (e) => {
         e.preventDefault();
         setApiLink(`https://opentdb.com/api.php?amount=${quizDetails.amount}&category=${quizDetails.category}&difficulty=${quizDetails.difficulty}&type=multiple`)
-
-        // const API_URL = `https://opentdb.com/api.php?amount=${quizDetails.amount}&category=${quizDetails.category}&difficulty=${quizDetails.difficulty}&type=multiple`
-
-
-        // fetch(API_URL)
-        //     .then((res) => res.json())
-        //     .then((data) => {
-        //         console.log(data.results);
-        //         setQuestions(...questions, data.results);
-        //     });
-
-
-
 
         setRedirect({
             redirect: true
